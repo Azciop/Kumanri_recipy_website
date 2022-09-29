@@ -14,8 +14,6 @@
     </button>
     <div class="dropdown-content">
       <a href="./">Acceuil</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
     </div>
   </div>
 </div>
@@ -31,19 +29,41 @@
             <h3>Recipy title</h3>
             <p>recipy description</p>
             <img class="recipy-img" src="../assets/recipy-img-test.jpeg" alt="">
+           <button class="btn btn-recipy" @click="showModal = true">Voir la recette</button>
           </div>
           <div class="recipy-unity">
             <h3>Recipy title</h3>
             <p>recipy description</p>
             <img class="recipy-img" src="../assets/recipy-img-test.jpeg" alt="">
+           <button class="btn btn-recipy" @click="showModal = true">Voir la recette</button>
           </div>
           <div class="recipy-unity">
             <h3>Recipy title</h3>
             <p>recipy description</p>
             <img class="recipy-img" src="../assets/recipy-img-test.jpeg" alt="">
+           <button class="btn btn-recipy" @click="showModal = true">Voir la recette</button>
+          </div>
+          <div class="recipy-unity">
+            <h3>Recipy title</h3>
+            <p>recipy description</p>
+            <img class="recipy-img" src="../assets/recipy-img-test.jpeg" alt="">
+           <button class="btn btn-recipy" @click="showModal = true">Voir la recette</button>
+          </div>
+          <div class="recipy-unity">
+            <h3>Recipy title</h3>
+            <p>recipy description</p>
+            <img class="recipy-img" src="../assets/recipy-img-test.jpeg" alt="">
+           <button class="btn btn-recipy" @click="showModal = true">Voir la recette</button>
+          </div>
+          <div class="recipy-unity">
+            <h3>Recipy title</h3>
+            <p>recipy description</p>
+            <img class="recipy-img" src="../assets/recipy-img-test.jpeg" alt="">
+           <button class="btn btn-recipy" @click="showModal = true">Voir la recette</button>
           </div>
         </div>
       </section>
+      <selectedRecipyModal @close-modal="showModal = false" />
     </main>
     <footer>
       <p>Bernamont Steven 2022 © </p>
@@ -52,11 +72,14 @@
 </template>
 
 <script>
+import selectedRecipyModal from './selectedRecipyModal.vue'
+
 export default {
+  components: { selectedRecipyModal },
   name: "mainPage",
   data() {
     return {
-
+      showModal: false,
     }
   }
 }
@@ -145,7 +168,15 @@ nav {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+.search-wrapper {
+  max-width: 450px;
+  width: 50%;
+  min-width: 200px;
+
+}
 .input-search {
+  text-align: center;
+  width: 100%;
   border-radius: 20px;
   border:none;
   font-weight: bold;
@@ -155,6 +186,10 @@ box-shadow: 1px 1px 50px 9px rgba(0,0,0,0.45);
 }
 .input-search:focus {
  outline: none;
+ text-align: left;
+}
+.input-search:focus::placeholder {
+  color: transparent;
 }
 main {
   text-align: center;
@@ -186,18 +221,25 @@ main h1 {
   opacity: 1  !important;
   text-transform: capitalize;
   text-align: center;
+  margin: 20px 0 0 0;
 }
 .recipy-unity {
   width: 95%;
-  background-color: rgba(255, 255, 255, 0.5);
-  margin: 5px 0 0 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  margin: 12px 0;
   border-radius: 20px;
+  height: auto;
+
 }
 .recipy-unity h3 {
-  margin: 0;
-  padding: 5px 0 0 0;
+  margin: 10px;
+  padding:0 0 0 0;
   color: black;
   font-size: 28px;
+  border-top: black 2px dashed;
+  border-left: black 10px solid;
+  border-right: black 10px solid;
+  border-radius: 20px 20px 10px 10px;
 }
 .recipy-unity p {
   margin: 0;
@@ -208,8 +250,20 @@ main h1 {
   width: 95%;
   height: 100%;
   object-fit: cover;
-  padding: 5px 0 0 0;
+  padding: 0;
   border-radius: 0 0 20px 20px;
+  margin: 5px 0 5px 0;
+  border: 2px solid rgb(139, 57, 57);
+}
+.btn-recipy {
+  margin: 0 0 10px 0;
+  border: none;
+  padding: 5px 28px;
+  border-radius: 18px;
+  border-bottom: black 3px solid;
+}
+.btn-recipy:hover {
+  border: 0;
 }
 footer {
   text-align: center;
@@ -228,5 +282,25 @@ footer p {
   font-weight: bold;
   font-size: 20px;
   width: 100%;
+}
+
+@media all and (min-width: 1024px) {
+  .nav-content {
+    height: 100px;
+  }
+  .bulk-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .recipy-unity {
+    width: 25%;
+    margin: 10px 5px;
+  }
+  .input-search {
+    height: 40px;
+    font-size: 30px;
+  }
 }
 </style>
