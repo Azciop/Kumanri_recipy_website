@@ -7,12 +7,14 @@
 <script>
   import mainPage from './components/mainPage.vue';
   import pageNotFound from './components/notFound.vue';
+
  
 export default {
   name: 'App',
   components: {
     mainPage,
     pageNotFound,
+  
   }
 }
 </script>
@@ -22,8 +24,11 @@ export default {
 #app {
   font-family: 'PT Sans Narrow', sans-serif;
 }
-body {
-  margin: 0;
-  padding: 0;
-}
+*,
+    ::before,
+    ::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 </style>
