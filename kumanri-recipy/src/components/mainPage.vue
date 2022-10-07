@@ -15,7 +15,7 @@
                 <font-awesome-icon class="icon-navbar" icon="fa-solid fa-bars" />
               </button>
               <div class="dropdown-content">
-                <a href="./">Acceuil</a>
+
               </div>
             </div>
           </div>
@@ -24,50 +24,20 @@
     </header>
     <main>
       <modal :open="isOpen" @close="isOpen = !isOpen">
-              <h3>recipy title</h3>
-              <p>recipy description</p>
-              <img src="../assets/recipy-img-test.jpeg" alt="" class="img-modal">
-            </modal>
+        <h3>recipy title</h3>
+        <p>recipy description</p>
+        <img src="../assets/recipy-img-test.jpeg" alt="" class="img-modal">
+      </modal>
       <h1>! Welcome !</h1>
-      <section id="bulk-recipy">
-        <h2 class="bulk-title">Recettes en vrac</h2>
-        <div class="bulk-list">
-          <div class="recipy-unity">
-            <h3>Recipy title</h3>
-            <p>recipy description</p>
-            <img class="recipy-img" src="../assets/recipy-img-test.jpeg" alt="">
-            <button class="btn btn-recipy"  @click="isOpen = true">Voir la recette</button>
-          </div>
-          <div class="recipy-unity">
-            <h3>Recipy title</h3>
-            <p>recipy description</p>
-            <img class="recipy-img" src="../assets/recipy-img-test.jpeg" alt="">
-            <button class="btn btn-recipy" >Voir la recette</button>
-          </div>
-          <div class="recipy-unity">
-            <h3>Recipy title</h3>
-            <p>recipy description</p>
-            <img class="recipy-img" src="../assets/recipy-img-test.jpeg" alt="">
-            <button class="btn btn-recipy" >Voir la recette</button>
-          </div>
-          <div class="recipy-unity">
-            <h3>Recipy title</h3>
-            <p>recipy description</p>
-            <img class="recipy-img" src="../assets/recipy-img-test.jpeg" alt="">
-            <button class="btn btn-recipy" >Voir la recette</button>
-          </div>
-          <div class="recipy-unity">
-            <h3>Recipy title</h3>
-            <p>recipy description</p>
-            <img class="recipy-img" src="../assets/recipy-img-test.jpeg" alt="">
-            <button class="btn btn-recipy" >Voir la recette</button>
-          </div>
-          <div class="recipy-unity">
-            <h3>Recipy title</h3>
-            <p>recipy description</p>
-            <img class="recipy-img" src="../assets/recipy-img-test.jpeg" alt="">
-            <button class="btn btn-recipy" >Voir la recette</button>
-          </div>
+      <section id="food-category" class="recipy-section">
+        <div class="food-categorie">
+          <h3 class="categorie-title">Type de nourriture</h3>
+          <ul class="categorie-list">
+            <li v-for="(categorie, index) in categories" :key="index">               
+              {{ categorie.strCategory }}         
+              <img class="categorie-img" :src="categorie.strCategoryThumb" >    
+            </li>
+          </ul>
         </div>
       </section>
     </main>
@@ -93,17 +63,31 @@ import { ref } from "vue";
 import Modal from "./modalRecipy.vue";
 
 export default {
-    components: { Modal },
-    setup () {
-const isOpen = ref(false)
-
-return { isOpen}
-    },
+  components: { Modal },
+  setup() {
+    const isOpen = ref(false)
+    return { isOpen }
+  },
   name: "mainPage",
+  mounted() {
+    this.getAllCategories()
+  },
   data() {
     return {
-
+      categories: []
     }
+  },
+  methods: {
+    getAllCategories() {
+      axios
+        .get('https://www.themealdb.com/api/json/v1/1/categories.php')
+        .then((response) => {
+          console.log( response.data);
+          this.categories = response.data.categories;  
+        }).catch(error => {
+          console.log(error);
+        })
+    },
   },
 }
 </script>
@@ -242,6 +226,42 @@ main h1 {
   text-shadow: 0 1px 0 #ffffff, 0 2px 0 #ffffff, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, .1), 0 0 5px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .2), 0 5px 10px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .2), 0 20px 20px rgba(0, 0, 0, .15), -2px -2px 0px rgba(0, 0, 0, 0);
 }
 
+#food-category {
+  background-color: rgba(0, 0, 0, .7);
+  margin: 20px 10%;
+  border-radius: 2rem;
+}
+
+#food-category h2,
+h3 {
+  color: white;
+  opacity: 1 !important;
+  text-transform: capitalize;
+  text-align: center;
+  padding: 20px 0 20px 0;
+}
+
+.categorie-list {
+  list-style: none;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  font-size: 2rem;
+}
+
+.categorie-list li {
+  margin: 0 10px;
+  width: 250px;
+}
+
+.categorie-img {
+  width: 100%;
+  max-height: 150px;
+
+}
+
 #bulk-recipy {
   display: flex;
   flex-direction: column;
@@ -254,55 +274,6 @@ main h1 {
   border-radius: 10px;
 }
 
-.bulk-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.bulk-title {
-  color: white;
-  opacity: 1 !important;
-  text-transform: capitalize;
-  text-align: center;
-  margin: 20px 0 0 0;
-}
-
-.recipy-unity {
-  width: 95%;
-  background-color: rgba(255, 255, 255, 0.7);
-  margin: 12px 0;
-  border-radius: 20px;
-  height: auto;
-
-}
-
-.recipy-unity h3 {
-  margin: 10px;
-  padding: 0 0 0 0;
-  color: black;
-  font-size: 28px;
-  border-top: black 2px dashed;
-  border-left: black 10px solid;
-  border-right: black 10px solid;
-  border-radius: 20px 20px 10px 10px;
-}
-
-.recipy-unity p {
-  margin: 0;
-  padding: 5px 0 0 0;
-  font-size: 20px;
-}
-
-.recipy-unity img {
-  width: 95%;
-  height: 100%;
-  object-fit: cover;
-  padding: 0;
-  border-radius: 0 0 20px 20px;
-  margin: 5px 0 5px 0;
-  border: 2px solid rgb(139, 57, 57);
-}
 
 .btn-recipy {
   margin: 0 0 10px 0;
@@ -346,21 +317,17 @@ footer p {
     height: 100px;
   }
 
-  .bulk-list {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .recipy-unity {
-    width: 25%;
-    margin: 10px 5px;
-  }
+ 
 
   .input-search {
     height: 40px;
     font-size: 30px;
+  }
+}
+
+@media all and (max-width: 767px) {
+  .categorie-img {
+    display: none;
   }
 }
 </style>
