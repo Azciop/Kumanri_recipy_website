@@ -7,6 +7,8 @@
 <script>
   import mainPage from './components/mainPage.vue';
   import pageNotFound from './components/notFound.vue';
+  import shoppingList from './components/shoppingList.vue';
+  import currentCategory from './components/currentCategory.vue';
 
  
 export default {
@@ -14,6 +16,8 @@ export default {
   components: {
     mainPage,
     pageNotFound,
+    shoppingList,
+    currentCategory
   
   }
 }
