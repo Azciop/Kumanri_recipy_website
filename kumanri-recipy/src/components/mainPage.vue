@@ -9,15 +9,8 @@
           <div class="search-wrapper">
             <input class="input-search" type="text" v-model="searchQuery" placeholder="Rechercher une recette">
           </div>
-          <div class="navbar">
-            <div class="dropdown">
-              <button class="dropbtn">
-                <font-awesome-icon class="icon-navbar" icon="fa-solid fa-bars" />
-              </button>
-              <div class="dropdown-content">
-
-              </div>
-            </div>
+          <div>
+            <a href="./list">Liste de courses</a>
           </div>
         </div>
       </nav>
@@ -34,8 +27,8 @@
           <h3 class="categorie-title">Type de nourriture</h3>
           <ul class="categorie-list">
             <li v-for="(categorie, index) in categories" :key="index">               
-              {{ categorie.strCategory }}         
               <img class="categorie-img" :src="categorie.strCategoryThumb" >    
+              <p>{{ categorie.strCategory }}</p>      
             </li>
           </ul>
         </div>
@@ -93,241 +86,197 @@ export default {
 </script>
 <style lang="css">
 .banniere {
-  position: absolute;
-  width: 100%;
-  height: 20px;
-  background-color: rgb(11, 167, 11);
-  color: #fff;
-  text-align: center;
-  font-size: 15px;
+	position: absolute;
+	width: 100%;
+	height: 20px;
+	background-color: rgb(11, 167, 11);
+	color: #fff;
+	text-align: center;
+	font-size: 15px;
 }
-
 body {
-  background: url("../assets/tablecloth-background.jpg");
+	background: url("../assets/tablecloth-background.jpg");
 }
-
 nav {
-  padding-top: 20px;
+	padding-top: 20px;
 }
-
 .nav-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: rgb(0, 128, 0);
-  align-items: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	background-color: rgb(0, 128, 0);
+	align-items: center;
+	padding: 0 20px;
 }
-
 .header-logo {
-  width: 50px;
+	width: 50px;
 }
-
 .navbar {
-  overflow: hidden;
-  font-family: Arial;
+	overflow: hidden;
+	font-family: Arial;
 }
-
 .navbar a {
-  float: left;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+	float: left;
+	font-size: 16px;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
 }
-
-.icon-navbar {
-  font-size: 20px;
+.nav-content a {
+	font-size: 20px;
+	color: white ;
+	text-decoration: none;
 }
-
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
-
-.dropdown .dropbtn {
-  font-size: 16px;
-  border: none;
-  outline: none;
-  color: white;
-  padding: 16px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  right: 0;
-  top: 74px;
-  opacity: 0.8;
-}
-
-.dropdown-content a {
-  float: none;
-  color: black;
-  font-size: 20px;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-  opacity: 1;
-}
-
-.dropdown-content a:hover {
-  background-color: rgb(0, 0, 0);
-  color: white;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
 .search-wrapper {
-  max-width: 450px;
-  width: 50%;
-  min-width: 200px;
-
+	max-width: 450px;
+	width: 50%;
+	min-width: 200px;
 }
-
 .input-search {
-  text-align: center;
-  width: 100%;
-  border-radius: 20px;
-  border: none;
-  font-weight: bold;
-  padding: 3px 5px;
-  -webkit-box-shadow: 1px 1px 50px 9px rgba(0, 0, 0, 0.45);
-  box-shadow: 1px 1px 50px 9px rgba(0, 0, 0, 0.45);
+	text-align: center;
+	width: 100%;
+	border-radius: 20px;
+	border: none;
+	font-weight: bold;
+	padding: 3px 5px;
+	-webkit-box-shadow: 1px 1px 50px 9px rgba(0, 0, 0, 0.45);
+	box-shadow: 1px 1px 50px 9px rgba(0, 0, 0, 0.45);
 }
-
 .input-search:focus {
-  outline: none;
-  text-align: left;
+	outline: none;
+	text-align: left;
 }
-
 .input-search:focus::placeholder {
-  color: transparent;
+	color: transparent;
 }
-
 main {
-  text-align: center;
+	text-align: center;
 }
-
 main h1 {
-  text-transform: uppercase;
-  font-size: 50px;
-  margin: 20px 0 0 0;
-  text-shadow: 0 1px 0 #ffffff, 0 2px 0 #ffffff, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, .1), 0 0 5px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .2), 0 5px 10px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .2), 0 20px 20px rgba(0, 0, 0, .15), -2px -2px 0px rgba(0, 0, 0, 0);
+	text-transform: uppercase;
+	font-size: 50px;
+	margin: 20px 0 0 0;
+	text-shadow: 0 1px 0 #ffffff, 0 2px 0 #ffffff, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, .1), 0 0 5px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .2), 0 5px 10px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .2), 0 20px 20px rgba(0, 0, 0, .15), -2px -2px 0px rgba(0, 0, 0, 0);
 }
-
 #food-category {
-  background-color: rgba(0, 0, 0, .7);
-  margin: 20px 10%;
-  border-radius: 2rem;
+	background-color: rgba(0, 0, 0, .7);
+	margin: 20px 10%;
+	border-radius: 2rem;
 }
-
-#food-category h2,
-h3 {
-  color: white;
-  opacity: 1 !important;
-  text-transform: capitalize;
-  text-align: center;
-  padding: 20px 0 20px 0;
+#food-category h2,h3 {
+	color: white;
+	opacity: 1 !important;
+	text-transform: capitalize;
+	text-align: center;
+	padding: 20px 0 20px 0;
 }
-
 .categorie-list {
-  list-style: none;
-  color: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  font-size: 2rem;
+	list-style: none;
+	color: white;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	font-size: 2rem;
 }
-
 .categorie-list li {
-  margin: 0 10px;
-  width: 250px;
+	margin: 0 10px;
+	width: 250px;
+	position: relative;
 }
-
 .categorie-img {
-  width: 100%;
-  max-height: 150px;
-
+	width: 100%;
+	max-height: 150px;
+	position: relative;
 }
-
+.categorie-list p {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.75517px 0.958851px 0px, rgb(0, 0, 0) 1.0806px 1.68294px 0px, rgb(0, 0, 0) 0.141474px 1.99499px 0px, rgb(0, 0, 0) -0.832294px 1.81859px 0px, rgb(0, 0, 0) -1.60229px 1.19694px 0px, rgb(0, 0, 0) -1.97998px 0.28224px 0px, rgb(0, 0, 0) -1.87291px -0.701566px 0px, rgb(0, 0, 0) -1.30729px -1.5136px 0px, rgb(0, 0, 0) -0.421592px -1.95506px 0px, rgb(0, 0, 0) 0.567324px -1.91785px 0px, rgb(0, 0, 0) 1.41734px -1.41108px 0px, rgb(0, 0, 0) 1.92034px -0.558831px 0px;
+}
 #bulk-recipy {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, .7);
-  margin: 20px 10%;
-  text-align: center;
-  padding: 0 0 5px 0;
-  border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, .7);
+	margin: 20px 10%;
+	text-align: center;
+	padding: 0 0 5px 0;
+	border-radius: 10px;
 }
-
-
 .btn-recipy {
-  margin: 0 0 10px 0;
-  border: none;
-  padding: 5px 28px;
-  border-radius: 18px;
-  border-bottom: black 3px solid;
+	margin: 0 0 10px 0;
+	border: none;
+	padding: 5px 28px;
+	border-radius: 18px;
+	border-bottom: black 3px solid;
 }
-
 .btn-recipy:hover {
-  border: 0;
+	border: 0;
 }
-
 .img-modal {
-  width: 100%;
-  height: auto;
+	width: 100%;
+	height: auto;
 }
-
 footer {
-  text-align: center;
-  width: 100%;
-  height: 54px;
-  margin: 0;
-  background-color: rgb(0, 128, 0);
-  position: relative;
+	text-align: center;
+	width: 100%;
+	height: 54px;
+	margin: 0;
+	background-color: rgb(0, 128, 0);
+	position: relative;
 }
-
 footer p {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: bold;
-  font-size: 20px;
-  width: 100%;
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-weight: bold;
+	font-size: 20px;
+	width: 100%;
 }
-
 @media all and (min-width: 1024px) {
-  .nav-content {
-    height: 100px;
-  }
-
- 
-
-  .input-search {
-    height: 40px;
-    font-size: 30px;
-  }
+	.nav-content {
+		height: 100px;
+	}
+	.input-search {
+		height: 40px;
+		font-size: 30px;
+	}
 }
-
 @media all and (max-width: 767px) {
-  .categorie-img {
-    display: none;
-  }
+	.categorie-img {
+		display: none;
+	}
+	.categorie-list p {
+		position: relative;
+		margin-bottom: 30px;
+	}
 }
+@media all and (max-width: 675px) {
+	.categorie-list p {
+		margin-bottom: 15px;
+	}
+	.categorie-list li {
+		width: 170px;
+	}
+	.nav-content {
+		padding: 0 ;
+	}
+	.nav-content p {
+		text-align: center;
+	}
+}
+@media all and (max-width: 470px) {
+	#food-category {
+		margin: 0;
+		border-radius: 2rem 2rem 0 0;
+	}
+}
+
 </style>
