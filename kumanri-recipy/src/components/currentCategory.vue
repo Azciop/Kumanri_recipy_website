@@ -16,7 +16,7 @@
     </header>
     <main>
         <section>
-            <h3>Recettes de  categorie.strCategory  </h3>
+            <h3>Recettes de </h3>
             <ul class="meals-list">
             <li v-for="(meal, index) in meals" :key="index">               
               <img class="meal-img" :src="meal.strMealThumb" >    
@@ -39,7 +39,14 @@ const axios = require("axios");
 const app = Vue.createApp();
 app.use(VueAxios, axios);
 
+var categoryStorage = JSON.parse(localStorage.getItem("currentCategory"));
+
+function categoryTitle(categoryStorage) {
+
+}
+
 export default {
+
     name: "currentCategory",
     mounted() {
     this.selectedCategory()
@@ -54,12 +61,13 @@ export default {
   methods: {
     selectedCategory() {
       axios
-        .get('https://www.themealdb.com/api/json/v1/1/filter.php?c=seafood')
+        .get('https://www.themealdb.com/api/json/v1/1/filter.php?c=')
         .then((response) => {
           console.log( response.data);
           this.meals = response.data.meals;  
         }).catch(error => {
           console.log(error);
+          alert("api can't be reached");
         })
     },
     currentCategory() {

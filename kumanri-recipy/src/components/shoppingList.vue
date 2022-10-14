@@ -32,11 +32,23 @@
               <button class="delete-btn btn" @click="removeToDo(todo)"><font-awesome-icon icon="fa-solid fa-xmark" /></button>
             </div>
           </div>
+          <button  class="btn delete-all-btn" @click="deleteToDo()">Supprimer</button>
         </div>
       </section>
     </main>
   </body>
 </template>
+
+<script>
+export default {
+  methods: {
+    deleteToDo() {
+      localStorage.removeItem('todos')
+      this.todos = []  
+    }
+  }
+}
+</script>
 
 <script setup>
 import {ref, onMounted, computed, watch} from 'vue';
@@ -130,6 +142,11 @@ main {
 .btn:hover {
 	background:linear-gradient(to bottom, #72b352 5%, #77b55a 100%);
 	background-color:#72b352;
+}
+
+.delete-all-btn {
+  border-radius: 16px;
+  margin-bottom: 10px;
 }
 @media all and (max-width: 450px) {
 main {

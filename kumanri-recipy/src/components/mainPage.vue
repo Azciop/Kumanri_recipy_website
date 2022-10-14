@@ -26,9 +26,12 @@
         <div class="food-categorie">
           <h3 class="categorie-title">Type de nourriture</h3>
           <ul class="categorie-list">
-            <li v-for="(categorie, index) in categories" :key="index">               
+			  <li v-for="(categorie, index) in categories" :key="index">   
+				<a href="./currentCategory" @click.prevent="getCategory(categorie.strCategory)"> 
+				       
               <img class="categorie-img" :src="categorie.strCategoryThumb" >    
-              <p>{{ categorie.strCategory }}</p>      
+              <p>{{ categorie.strCategory }}</p>
+			</a>
             </li>
           </ul>
         </div>
@@ -79,8 +82,13 @@ export default {
           this.categories = response.data.categories;  
         }).catch(error => {
           console.log(error);
+		  alert("api can't be reached");
         })
     },
+	getCategory(cat) {	
+		localStorage.setItem('currentCategory',  JSON.stringify(cat));
+		this.$router.push('/currentCategory')
+	}
   },
 }
 </script>
@@ -96,7 +104,15 @@ export default {
 }
 body {
 	background: url("../assets/tablecloth-background.jpg");
+
 }
+
+a {
+	text-decoration: none;
+	color: white;
+}
+
+
 nav {
 	padding-top: 20px;
 }
@@ -126,7 +142,7 @@ nav {
 .nav-content a {
 	font-size: 20px;
 	color: white ;
-	text-decoration: none;
+
 }
 .search-wrapper {
 	max-width: 450px;
