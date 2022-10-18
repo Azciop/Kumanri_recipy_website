@@ -27,8 +27,7 @@
           <h3 class="categorie-title">Type de nourriture</h3>
           <ul class="categorie-list">
 			  <li v-for="(categorie, index) in categories" :key="index">   
-				<a href="./currentCategory" @click.prevent="getCategory(categorie.strCategory)"> 
-				       
+				<a href="./currentCategory" @click="getCategory(categorie.strCategory)"> 	       
               <img class="categorie-img" :src="categorie.strCategoryThumb" >    
               <p>{{ categorie.strCategory }}</p>
 			</a>
@@ -37,9 +36,6 @@
         </div>
       </section>
     </main>
-    <footer>
-      <p>Bernamont Steven 2022 © </p>
-    </footer>
   </body>
 </template>
 
@@ -87,7 +83,6 @@ export default {
     },
 	getCategory(cat) {	
 		localStorage.setItem('currentCategory',  JSON.stringify(cat));
-		this.$router.push('/currentCategory')
 	}
   },
 }
@@ -237,24 +232,6 @@ main h1 {
 .img-modal {
 	width: 100%;
 	height: auto;
-}
-footer {
-	text-align: center;
-	width: 100%;
-	height: 54px;
-	margin: 0;
-	background-color: rgb(0, 128, 0);
-	position: relative;
-}
-footer p {
-	margin: 0;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	font-weight: bold;
-	font-size: 20px;
-	width: 100%;
 }
 @media all and (min-width: 1024px) {
 	.nav-content {

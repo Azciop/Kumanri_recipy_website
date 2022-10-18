@@ -16,7 +16,7 @@
     </header>
     <main>
         <section>
-            <h3>Recettes de </h3>
+          <h3 class="meal-title">Recettes de {{ thisCurrentCategory }}</h3>
             <ul class="meals-list">
             <li v-for="(meal, index) in meals" :key="index">               
               <img class="meal-img" :src="meal.strMealThumb" >    
@@ -25,9 +25,6 @@
           </ul>
         </section>
     </main>
-    <footer>
-      <p>Bernamont Steven 2022 © </p>
-    </footer>
   </body>
 </template>
 
@@ -41,32 +38,26 @@ app.use(VueAxios, axios);
 
 var categoryStorage = JSON.parse(localStorage.getItem("currentCategory"));
 
-function categoryTitle(categoryStorage) {
-
-}
-
 export default {
-
     name: "currentCategory",
-    mounted() {
-    this.selectedCategory()
-    this.currentCategory()
-  },
     data() {
     return {
       meals: [],
       categories: [],
+      thisCurrentCategory: categoryStorage
     }
+  },
+  mounted() {
+    this.selectedCategory()
+    this.currentCategory()
   },
   methods: {
     selectedCategory() {
       axios
-        .get('https://www.themealdb.com/api/json/v1/1/filter.php?c=')
+        .get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoryStorage}`)
         .then((response) => {
-          console.log( response.data);
           this.meals = response.data.meals;  
         }).catch(error => {
-          console.log(error);
           alert("api can't be reached");
         })
     },
@@ -74,14 +65,14 @@ export default {
       axios
         .get('https://www.themealdb.com/api/json/v1/1/categories.php')
         .then((response) => {
-          console.log( response.data);
           this.categories = response.data.categories;  
         }).catch(error => {
-          console.log(error);
+          alert("cannot get api")
         })
     },
   },
 }
+
 </script>
 
 <style lang="css" scoped>
