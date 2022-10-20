@@ -220,9 +220,6 @@ main h1 {
 	.categorie-list li {
 		width: 170px;
 	}
-	.nav-content {
-		padding: 0 ;
-	}
 	.nav-content p {
 		text-align: center;
 	}
