@@ -1,13 +1,10 @@
 <template>
     <body>   
     <header>
-      <div class="banniere">Cook With Me by <i><b>Bernamont Steven</b></i></div>
       <nav>
         <div class="nav-content">
           <a href="./"><img class="header-logo" src="../assets/logo-website.png" alt="logo du site" /></a>
-          <div class="search-wrapper">
-            <input class="input-search" type="text" v-model="searchQuery" placeholder="Rechercher une recette">
-          </div>
+          
           <div>
             <a href="./">Acceuil</a>
           </div>

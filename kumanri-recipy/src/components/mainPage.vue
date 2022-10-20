@@ -2,13 +2,10 @@
 
   <body>
     <header>
-      <div class="banniere">Cook With Me by <i><b>Bernamont Steven</b></i></div>
       <nav>
         <div class="nav-content">
           <a href="./"><img class="header-logo" src="../assets/logo-website.png" alt="logo du site" /></a>
-          <div class="search-wrapper">
-            <input class="input-search" type="text" v-model="searchQuery" placeholder="Rechercher une recette">
-          </div>
+          
           <div>
             <a href="./list">Liste de courses</a>
           </div>
@@ -66,7 +63,7 @@ export default {
   },
   data() {
     return {
-      categories: []
+      categories: [],
     }
   },
   methods: {
@@ -88,15 +85,6 @@ export default {
 }
 </script>
 <style lang="css">
-.banniere {
-	position: absolute;
-	width: 100%;
-	height: 20px;
-	background-color: rgb(11, 167, 11);
-	color: #fff;
-	text-align: center;
-	font-size: 15px;
-}
 body {
 	background: url("../assets/tablecloth-background.jpg");
 
@@ -105,11 +93,6 @@ body {
 a {
 	text-decoration: none;
 	color: white;
-}
-
-
-nav {
-	padding-top: 20px;
 }
 .nav-content {
 	display: flex;
@@ -139,28 +122,7 @@ nav {
 	color: white ;
 
 }
-.search-wrapper {
-	max-width: 450px;
-	width: 50%;
-	min-width: 200px;
-}
-.input-search {
-	text-align: center;
-	width: 100%;
-	border-radius: 20px;
-	border: none;
-	font-weight: bold;
-	padding: 3px 5px;
-	-webkit-box-shadow: 1px 1px 50px 9px rgba(0, 0, 0, 0.45);
-	box-shadow: 1px 1px 50px 9px rgba(0, 0, 0, 0.45);
-}
-.input-search:focus {
-	outline: none;
-	text-align: left;
-}
-.input-search:focus::placeholder {
-	color: transparent;
-}
+
 main {
 	text-align: center;
 }
